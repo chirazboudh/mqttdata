@@ -58,12 +58,12 @@ var hours = date_ob.getHours();
 var minutes = date_ob.getMinutes();
 var seconds = date_ob.getSeconds();
   
-var dateTime = year + "-" + month + "-" + day + " " + hours + ":" + minutes + ":" + seconds;
+var dateTime = year + "-" + month + "-" + day + " " + hours + ":" + minutes;
 console.log(dateTime);
         var messageObject = {
             //topic: topic,
-            message: message.toString()+"&"+dateTime,
-			//date: dateTime
+            message: message.toString(),
+			date: dateTime
         };
    collection.insert(messageObject, function(error, result) {
 
@@ -80,6 +80,7 @@ app.get('/', function(req,res) {
 res.send(resultt);
 
 });
+
 
 app.listen(port, host, function() {
   console.log("Server started.......");

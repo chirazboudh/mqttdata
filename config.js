@@ -3,7 +3,7 @@ var config = {};
 config.debug = process.env.DEBUG || false;
 
 config.mqtt  = {};
-config.mqtt.namespace = process.env.MQTT_NAMESPACE || 'PH/82:7D:3A:20:35:FC/etph'; 
+config.mqtt.namespace = process.env.MQTT_NAMESPACE || 'Helios/Energy'; 
 //+/devices/+/up
 config.mqtt.hostname  = process.env.MQTT_HOSTNAME  || 'mqtt.livepool.eu'
 config.mqtt.port      = process.env.MQTT_PORT      || 8883;
