@@ -66,15 +66,12 @@ console.log(dateTime);
 			date: dateTime
         };
    collection.insert(messageObject, function(error, result) {
-			MongoClient.connect(url, function(err, db) {
-  if (err) throw err;
-  var dbo = db.db("mqtt");
- 
+
   collection.find({}).toArray(function(err, data){
       console.log(data); // it will print your collection data
   });
 
-});
+
 });
 });});
 app.get('/', function(req,res) {
