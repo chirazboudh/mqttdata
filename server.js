@@ -11,7 +11,7 @@
 var app = express(); 
 const host = '0.0.0.0';
 const port = process.env.PORT || 4000;
-/*var express = require("express");
+/*var express = require("express");*/
 
 var mongodb  = require('mongodb');
 var mqtt     = require('mqtt');
@@ -28,17 +28,24 @@ client.on('connect', function () {
 	 console.log("subscibeee");
 });
 
-var mongoUri = 'mongodb://' + config.mongodb.hostname + ':' + config.mongodb.port + '/' + config.mongodb.database;
-mongodb.MongoClient.connect(mongoUri, function(error, database) {
-    if(error != null) {
-        throw error;
-    }
+const URI = process.env.MONGODB_URL;
+const mongoose = require('mongoose');
+mongoose.connect("mongodb+srv://chiraz:09813432Ch.@cluster0.osmydat.mongodb.net/?retryWrites=true&w=majority",
+{ useNewUrlParser: true}, function(err, db) {
+        if(err) {
+            console.log(err);
+        }
 
-    var collection = database.collection(config.mongodb.collection);
-    collection.createIndex( { "topic" : 1 } );
+console.log('Connected to MongoDB!!!')
+});
+const connection = mongoose.connection;
 
-    client.on('message', function (topic, message, date) {
-		   
+connection.on('error', console.error.bind(console, 'connection error:'));
+connection.once('open', async function () {
+
+  const collection  = connection.db.collection("message");
+   /*client.on('message', function (topic, message, date) {
+	/*	   
 var date_ob = new Date();
 var day = ("0" + date_ob.getDate()).slice(-2);
 var month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
@@ -58,61 +65,23 @@ console.log(dateTime);
             message: message.toString(),
 			date: dateTime
         };
-//console.log("message"+message.toString());
-/*var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://localhost:27017/";
-        collection.insert(messageObject, function(error, result) {
+   collection.insert(messageObject, function(error, result) {
 			MongoClient.connect(url, function(err, db) {
   if (err) throw err;
   var dbo = db.db("mqtt");
-  dbo.collection("message").find({}).toArray(function(err, result) {
-    if (err) throw err;
-    console.log(result);
-	resultt=result;
-    db.close();
-  });
  
-            if(error != null) {
-                console.log("ERROR: " + error);
-            }
-        });
-    });
-
+  collection.find({}).toArray(function(err, data){
+      console.log(data); // it will print your collection data
+  });
+*/
+//});
 });
-app.get('/data', function(req,res) {
-res.send(resultt);
 
-});
-app.listen(4000, () => {
-    console.log("Server Started at ${3000}")
-});*/
-/*const mongoose = require('mongoose');
-
-
-
-//establish connection to database
-mongoose.connect(
-    "mongodb+srv://chiraz:<password>@cluster0.osmydat.mongodb.net/?retryWrites=true&w=majority",
-    { useFindAndModify: false, useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true},
-    (err) => {
-        if (err) return console.log("Error: ", err);
-        console.log("MongoDB Connection -- Ready state is:", mongoose.connection.readyState);
-    }
-);*/
-const URI = process.env.MONGODB_URL;
-const mongoose = require('mongoose');
-mongoose.connect("mongodb+srv://chiraz:09813432Ch.@cluster0.osmydat.mongodb.net/?retryWrites=true&w=majority",
-{ useNewUrlParser: true}, function(err, db) {
-        if(err) {
-            console.log(err);
-        }
-
-console.log('Connected to MongoDB!!!')
-});
 app.get('/', function(req,res) {
 res.send("hellooo fromm meee");
 
 });
+
 app.listen(port, host, function() {
   console.log("Server started.......");
 });
