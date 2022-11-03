@@ -74,8 +74,9 @@ console.log(dateTime);
 
 });
 });});
+});
 app.get('/', function(req,res) {
-res.send(resultt);
+res.send("hellooo fromm meee");
 
 });
 
