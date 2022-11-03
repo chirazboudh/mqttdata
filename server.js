@@ -67,7 +67,7 @@ console.log(dateTime);
         };
    collection.insert(messageObject, function(error, result) {
 
-  collection.find(message).toArray(function(err, data){
+  collection.find({}).toArray(function(err, data){
       console.log(data); // it will print your collection data
   resultt=data;
 
