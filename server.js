@@ -76,7 +76,9 @@ console.log(dateTime);
 });});
 });
 app.get('/', function(req,res) {
-res.send(resultt);
+	var obj = JSON.parse(resultt);
+
+res.send(obj.message);
 
 });
 
