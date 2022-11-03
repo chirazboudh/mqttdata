@@ -44,8 +44,8 @@ connection.on('error', console.error.bind(console, 'connection error:'));
 connection.once('open', async function () {
 
   const collection  = connection.db.collection("message");
-   /*client.on('message', function (topic, message, date) {
-	/*	   
+   client.on('message', function (topic, message, date) {
+		   
 var date_ob = new Date();
 var day = ("0" + date_ob.getDate()).slice(-2);
 var month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
@@ -73,8 +73,8 @@ console.log(dateTime);
   collection.find({}).toArray(function(err, data){
       console.log(data); // it will print your collection data
   });
-*/
-//});
+
+});
 });
 
 app.get('/', function(req,res) {
