@@ -95,7 +95,7 @@ mongoose.connect(
     }
 );*/
 const URI = process.env.MONGODB_URL;
-
+const mongoose = require('mongoose');
 mongoose.connect(URI, {
 
 useNewUrlParser: true, 
