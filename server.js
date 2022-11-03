@@ -97,7 +97,7 @@ mongoose.connect(
 const URI = process.env.MONGODB_URL;
 const mongoose = require('mongoose');
 mongoose.connect("mongodb+srv://chiraz:09813432Ch.@cluster0.osmydat.mongodb.net/?retryWrites=true&w=majority",
-{ useNewUrlParser: true, useUnifiedTopology: true }, function(err, db) {
+{ useNewUrlParser: true}, function(err, db) {
         if(err) {
             console.log(err);
         }
