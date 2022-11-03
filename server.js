@@ -62,8 +62,8 @@ var dateTime = year + "-" + month + "-" + day + " " + hours + ":" + minutes + ":
 console.log(dateTime);
         var messageObject = {
             //topic: topic,
-            message: message.toString(),
-			date: dateTime
+            message: message.toString()+"&"+dateTime,
+			//date: dateTime
         };
    collection.insert(messageObject, function(error, result) {
 
@@ -76,9 +76,8 @@ console.log(dateTime);
 });});
 });
 app.get('/', function(req,res) {
-	var obj = JSON.parse(resultt);
 
-res.send(obj.message);
+res.send(resultt);
 
 });
 
