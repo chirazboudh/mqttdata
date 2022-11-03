@@ -6,8 +6,11 @@
  * @license MIT
  *
  */
- /*var express = require("express");
-var app = express();
+var app = express(); 
+const host = '0.0.0.0';
+const port = process.env.PORT || 4000;
+/*var express = require("express");
+
 var mongodb  = require('mongodb');
 var mqtt     = require('mqtt');
 var config   = require('./config');
@@ -103,4 +106,7 @@ mongoose.connect("mongodb+srv://chiraz:09813432Ch.@cluster0.osmydat.mongodb.net/
         }
 
 console.log('Connected to MongoDB!!!')
+});
+app.listen(port, host, function() {
+  console.log("Server started.......");
 });
