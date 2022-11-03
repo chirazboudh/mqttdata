@@ -6,7 +6,7 @@
  * @license MIT
  *
  */
- var express = require("express");
+ /*var express = require("express");
 var app = express();
 var mongodb  = require('mongodb');
 var mqtt     = require('mqtt');
@@ -94,4 +94,4 @@ mongoose.connect(
         console.log("MongoDB Connection -- Ready state is:", mongoose.connection.readyState);
     }
 );
-});
+
