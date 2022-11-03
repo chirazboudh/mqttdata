@@ -69,14 +69,14 @@ console.log(dateTime);
 
   collection.find({}).toArray(function(err, data){
       console.log(data); // it will print your collection data
-  resultt=data;
+  resultt=data.message;
 
 
 });
 });});
 });
 app.get('/', function(req,res) {
-res.send(resultt.message);
+res.send(resultt);
 
 });
 
