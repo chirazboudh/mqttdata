@@ -27,7 +27,7 @@ const { MongoClient } = require('mongodb');
 const uri = "mongodb+srv://chiraz:<password>@cluster0.osmydat.mongodb.net/?retryWrites=true&w=majority";
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 client.connect(err => {
-  const collection = client.db(config.mongodb.db).collection(config.mongodb.collection);
+  const collection = client.db(config.mongodb.database).collection(config.mongodb.collection);
   // perform actions on the collection object
   
 
