@@ -81,7 +81,7 @@ res.send(resultt);
 app.listen(4000, () => {
     console.log("Server Started at ${3000}")
 });*/
-const mongoose = require('mongoose');
+/*const mongoose = require('mongoose');
 
 
 
@@ -93,5 +93,16 @@ mongoose.connect(
         if (err) return console.log("Error: ", err);
         console.log("MongoDB Connection -- Ready state is:", mongoose.connection.readyState);
     }
-);
+);*/
+const URI = process.env.MONGODB_URL;
 
+mongoose.connect(URI, {
+
+useNewUrlParser: true, 
+
+useUnifiedTopology: true 
+
+}, err => {
+if(err) throw err;
+console.log('Connected to MongoDB!!!')
+});
