@@ -109,6 +109,10 @@ mongoose.connect("mongodb+srv://chiraz:09813432Ch.@cluster0.osmydat.mongodb.net/
 
 console.log('Connected to MongoDB!!!')
 });
+app.get('/', function(req,res) {
+res.send("hellooo fromm meee");
+
+});
 app.listen(port, host, function() {
   console.log("Server started.......");
 });
