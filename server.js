@@ -69,13 +69,13 @@ console.log(dateTime);
 
   collection.find({}).toArray(function(err, data){
       console.log(data); // it will print your collection data
-  });
+  resultt=data;
 
 
 });
 });});
 app.get('/', function(req,res) {
-res.send("hellooo fromm meee");
+res.send(resultt);
 
 });
 
