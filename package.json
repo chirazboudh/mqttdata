@@ -4,6 +4,9 @@
     "author": "Dennis de Greef <github@link0.net>",
     "license": "MIT",
     "version": "1.0.0",
+    "engines": {
+    "node": "18.x"
+    },
     "dependencies": {
         "express": "^4.18.2",
         "mongodb": "2.0.28",
