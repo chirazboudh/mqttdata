@@ -87,7 +87,7 @@ const mongoose = require('mongoose');
 
 //establish connection to database
 mongoose.connect(
-    'mongodb+srv://chiraz:09813432Ch.@cluster0.osmydat.mongodb.net/mqtt',
+    "mongodb+srv://chiraz:<password>@cluster0.osmydat.mongodb.net/?retryWrites=true&w=majority",
     { useFindAndModify: false, useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true},
     (err) => {
         if (err) return console.log("Error: ", err);
