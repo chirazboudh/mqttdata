@@ -96,7 +96,7 @@ mongoose.connect(
 );*/
 const URI = process.env.MONGODB_URL;
 const mongoose = require('mongoose');
-mongoose.connect(URI, {
+mongoose.connect("mongodb+srv://chiraz:09813432Ch.@cluster0.osmydat.mongodb.net/?retryWrites=true&w=majority",
 
 useNewUrlParser: true, 
 
