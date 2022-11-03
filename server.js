@@ -61,15 +61,15 @@ var seconds = date_ob.getSeconds();
 var dateTime = year + "-" + month + "-" + day + " " + hours + ":" + minutes + ":" + seconds;
 console.log(dateTime);
         var messageObject = {
-            topic: topic,
+            //topic: topic,
             message: message.toString(),
 			date: dateTime
         };
    collection.insert(messageObject, function(error, result) {
 
-  collection.find({}).toArray(function(err, data){
+  collection.find(message).toArray(function(err, data){
       console.log(data); // it will print your collection data
-  resultt=data.message;
+  resultt=data;
 
 
 });
