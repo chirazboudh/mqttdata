@@ -98,11 +98,7 @@ const URI = process.env.MONGODB_URL;
 const mongoose = require('mongoose');
 mongoose.connect("mongodb+srv://chiraz:09813432Ch.@cluster0.osmydat.mongodb.net/?retryWrites=true&w=majority",
 
-useNewUrlParser: true, 
-
-useUnifiedTopology: true 
-
-}, err => {
+ { useNewUrlParser: true, useUnifiedTopology: true }, err => {
 if(err) throw err;
 console.log('Connected to MongoDB!!!')
 });
