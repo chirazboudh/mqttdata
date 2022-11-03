@@ -54,7 +54,7 @@ console.log(dateTime);
 			date: dateTime
         };
 //console.log("message"+message.toString());
-var MongoClient = require('mongodb').MongoClient;
+/*var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://localhost:27017/";
         collection.insert(messageObject, function(error, result) {
 			MongoClient.connect(url, function(err, db) {
@@ -80,5 +80,18 @@ res.send(resultt);
 });
 app.listen(4000, () => {
     console.log("Server Started at ${3000}")
-});
+});*/
+const mongoose = require('mongoose');
+
+
+
+//establish connection to database
+mongoose.connect(
+    'mongodb+srv://chiraz:09813432Ch.@cluster0.osmydat.mongodb.net/mqtt',
+    { useFindAndModify: false, useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true},
+    (err) => {
+        if (err) return console.log("Error: ", err);
+        console.log("MongoDB Connection -- Ready state is:", mongoose.connection.readyState);
+    }
+);
 });
