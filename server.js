@@ -23,13 +23,21 @@ client.on('connect', function () {
 	 console.log("subscibeee");
 });
 
-var mongoUri = 'mongodb://' + config.mongodb.hostname + ':' + config.mongodb.port + '/' + config.mongodb.database;
-mongodb.MongoClient.connect(mongoUri, function(error, database) {
-    if(error != null) {
-        throw error;
-    }
+const { MongoClient } = require('mongodb');
+const uri = "mongodb+srv://chiraz:<password>@cluster0.osmydat.mongodb.net/?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+client.connect(err => {
+  const collection = client.db(config.mongodb.db).collection(config.mongodb.collection);
+  // perform actions on the collection object
+  
 
-    var collection = database.collection(config.mongodb.collection);
+//var mongoUri = 'mongodb://' + config.mongodb.hostname + ':' + config.mongodb.port + '/' + config.mongodb.database;
+//mongodb.MongoClient.connect(mongoUri, function(error, database) {
+  //  if(error != null) {
+    //    throw error;
+    //}
+
+   // var collection = database.collection();
     collection.createIndex( { "topic" : 1 } );
 
     client.on('message', function (topic, message, date) {
@@ -73,6 +81,8 @@ var url = "mongodb://localhost:27017/";
         });
     });
 
+client.close();
+});
 });
 app.get('/data', function(req,res) {
 res.send(resultt);
