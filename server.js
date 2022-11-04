@@ -17,8 +17,8 @@ var mongodb  = require('mongodb');
 var mqtt     = require('mqtt');
 var config   = require('./config');
 var resultt;
-int h=1;
-int cnt=0;
+var h=1;
+var cnt=0;
 //ar mqttUri  = 'mqtt://' + config.mqtt.hostname + ':' + config.mqtt.port;
 var mqttUri  = 'mqtt://' + config.mqtt.user + ':' + config.mqtt.password + '@' + config.mqtt.hostname + ':' + config.mqtt.port;
 
