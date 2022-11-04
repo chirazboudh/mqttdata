@@ -17,7 +17,8 @@ var mongodb  = require('mongodb');
 var mqtt     = require('mqtt');
 var config   = require('./config');
 var resultt;
-
+int h=1;
+int cnt=0;
 //ar mqttUri  = 'mqtt://' + config.mqtt.hostname + ':' + config.mqtt.port;
 var mqttUri  = 'mqtt://' + config.mqtt.user + ':' + config.mqtt.password + '@' + config.mqtt.hostname + ':' + config.mqtt.port;
 
@@ -54,11 +55,11 @@ var year = date_ob.getFullYear();
 var date = year + "-" + month + "-" + day;
 console.log(date);
     
-var hours = date_ob.getHours();
+//var hours = date_ob.getHours();
 var minutes = date_ob.getMinutes();
 var seconds = date_ob.getSeconds();
-  
-var dateTime = year + "-" + month + "-" + day + " " + hours + ":" + minutes;
+  if(cnt>=60) h=h+1;
+var dateTime = year + "-" + month + "-" + day + " " + h + ":" + minutes;
 console.log(dateTime);
         var messageObject = {
             //topic: topic,
@@ -66,7 +67,7 @@ console.log(dateTime);
 			date: dateTime
         };
    collection.insert(messageObject, function(error, result) {
-
+cnt=cnt+1;
   collection.find({}).toArray(function(err, data){
       console.log(data); // it will print your collection data
   resultt=data;
