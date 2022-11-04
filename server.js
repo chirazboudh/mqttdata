@@ -58,7 +58,10 @@ console.log(date);
 //var hours = date_ob.getHours();
 var minutes = date_ob.getMinutes();
 var seconds = date_ob.getSeconds();
-  if(cnt>=60) h=h+1;
+  if(cnt>=60){
+	  h=h+1;
+	  cnt=0;
+  }
 var dateTime = year + "-" + month + "-" + day + " " + h.toString() + ":" + minutes;
 console.log(dateTime);
         var messageObject = {
