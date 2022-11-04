@@ -50,7 +50,7 @@ connection.once('open', async function () {
 var date_ob = new Date();
  date_ob.toLocaleString('en-US', {
     hour12: false,
-  }),
+  });
 var day = ("0" + date_ob.getDate()).slice(-2);
 var month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
 var year = date_ob.getFullYear();
