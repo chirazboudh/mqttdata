@@ -48,6 +48,9 @@ connection.once('open', async function () {
    client.on('message', function (topic, message, date) {
 		   
 var date_ob = new Date();
+ date_ob.toLocaleString('en-US', {
+    hour12: false,
+  }),
 var day = ("0" + date_ob.getDate()).slice(-2);
 var month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
 var year = date_ob.getFullYear();
@@ -55,14 +58,11 @@ var year = date_ob.getFullYear();
 var date = year + "-" + month + "-" + day;
 console.log(date);
     
-//var hours = date_ob.getHours();
+var hours = date_ob.getHours();
 var minutes = date_ob.getMinutes();
 var seconds = date_ob.getSeconds();
-  if(cnt>=60){
-	  h=h+1;
-	  cnt=0;
-  }
-var dateTime = year + "-" + month + "-" + day + " " + h.toString() + ":" + minutes;
+
+var dateTime = year + "-" + month + "-" + day + " " +hours+ ":" + minutes;
 console.log(dateTime);
         var messageObject = {
             //topic: topic,
