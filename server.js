@@ -23,7 +23,7 @@ var cnt=0;
 var mqttUri  = 'mqtt://' + config.mqtt.user + ':' + config.mqtt.password + '@' + config.mqtt.hostname + ':' + config.mqtt.port;
 
 var client   = mqtt.connect(mqttUri);
-
+while(1){
 client.on('connect', function () {
     client.subscribe(config.mqtt.namespace);
 	 //console.log("subscibeee");
@@ -80,7 +80,7 @@ var dateTime = year + "-" + month + "-" + day + " " +hours+ ":" + minutes;
 });
 });
 });
-});
+
 app.get('/', function(req,res) {
  collection.find({}).toArray(function(err, data){
       //console.log(data); // it will print your collection data
@@ -92,7 +92,8 @@ res.send(resultt);
 
 });
 
-
+});
+}
 app.listen(port, host, function() {
   console.log("Server started.......");
 });
