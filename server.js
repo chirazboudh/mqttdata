@@ -23,7 +23,7 @@ var cnt=0;
 var mqttUri  = 'mqtt://' + config.mqtt.user + ':' + config.mqtt.password + '@' + config.mqtt.hostname + ':' + config.mqtt.port;
 
 var client   = mqtt.connect(mqttUri);
-while(1){
+
 client.on('connect', function () {
     client.subscribe(config.mqtt.namespace);
 	 //console.log("subscibeee");
@@ -93,7 +93,7 @@ res.send(resultt);
 });
 
 });
-}
+
 app.listen(port, host, function() {
   console.log("Server started.......");
 });
