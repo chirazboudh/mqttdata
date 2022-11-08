@@ -26,7 +26,7 @@ var client   = mqtt.connect(mqttUri);
 
 client.on('connect', function () {
     client.subscribe(config.mqtt.namespace);
-	 console.log("subscibeee");
+	 //console.log("subscibeee");
 });
 
 const URI = process.env.MONGODB_URL;
@@ -37,7 +37,7 @@ mongoose.connect("mongodb+srv://chiraz:09813432Ch.@cluster0.osmydat.mongodb.net/
             console.log(err);
         }
 
-console.log('Connected to MongoDB!!!')
+//console.log('Connected to MongoDB!!!')
 });
 const connection = mongoose.connection;
 
@@ -56,23 +56,24 @@ var month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
 var year = date_ob.getFullYear();
 
 var date = year + "-" + month + "-" + day;
-console.log(date);
+//console.log(date);
     
 var hours = date_ob.getHours();
 var minutes = date_ob.getMinutes();
 var seconds = date_ob.getSeconds();
 
 var dateTime = year + "-" + month + "-" + day + " " +hours+ ":" + minutes;
-console.log(dateTime);
+//console.log(dateTime);
         var messageObject = {
             //topic: topic,
             message: message.toString(),
 			date: dateTime
         };
+
+
    collection.insert(messageObject, function(error, result) {
-cnt=cnt+1;
   collection.find({}).toArray(function(err, data){
-      console.log(data); // it will print your collection data
+      //console.log(data); // it will print your collection data
   resultt=data;
 
 
@@ -81,7 +82,12 @@ cnt=cnt+1;
 });
 });
 app.get('/', function(req,res) {
+ collection.find({}).toArray(function(err, data){
+      //console.log(data); // it will print your collection data
+  resultt=data;
 
+
+});
 res.send(resultt);
 
 });
