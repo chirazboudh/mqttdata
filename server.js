@@ -24,13 +24,7 @@ var cnt=0;
 var mqttUri  = 'mqtt://' + config.mqtt.user + ':' + config.mqtt.password + '@' + config.mqtt.hostname + ':' + config.mqtt.port;
 
 var client   = mqtt.connect(mqttUri);
- const liveReloadServer = livereload.createServer();
-liveReloadServer.server.once("connection", () => {
-  setTimeout(() => {
-    liveReloadServer.refresh("/");
-  }, 100);
-});
-app.use(connectLiveReload());
+ 
 
 client.on('connect', function () {
     client.subscribe(config.mqtt.namespace);
@@ -84,12 +78,18 @@ var dateTime = year + "-" + month + "-" + day + " " +hours+ ":" + minutes;
   collection.find({}).toArray(function(err, data){
       //console.log(data); // it will print your collection data
   resultt=data;
-
+const liveReloadServer = livereload.createServer();
+liveReloadServer.server.once("connection", () => {
+  setTimeout(() => {
+    liveReloadServer.refresh("/");
+  }, 100);
+});
 
 });
 });
 });
 
+app.use(connectLiveReload());
 
 app.get('/', function(req,res) {
  collection.find({}).toArray(function(err, data){
