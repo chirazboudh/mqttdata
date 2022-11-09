@@ -15,7 +15,7 @@
         "url": "https://github.com/dennisdegreef/mqtt-mongo-recorder.git"
     },
 	"scripts": {
-  "start": "node ./bin/www/server.js",
+  "start": "node ./server.js",
   "watch": "nodemon --ext *"
    }
 }
