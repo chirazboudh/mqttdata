@@ -12,7 +12,8 @@ var app = express();
 const host = '0.0.0.0';
 const port = process.env.PORT || 4000;
 /*var express = require("express");*/
-
+var livereload = require("livereload");
+var connectLiveReload = require("connect-livereload");
 var mongodb  = require('mongodb');
 var mqtt     = require('mqtt');
 var config   = require('./config');
@@ -72,6 +73,12 @@ var dateTime = year + "-" + month + "-" + day + " " +hours+ ":" + minutes;
 
 
    collection.insert(messageObject, function(error, result) {
+	   const liveReloadServer = livereload.createServer();
+liveReloadServer.server.once("connection", () => {
+  setTimeout(() => {
+    liveReloadServer.refresh("/");
+  }, 100);
+});
   collection.find({}).toArray(function(err, data){
       //console.log(data); // it will print your collection data
   resultt=data;
@@ -80,6 +87,8 @@ var dateTime = year + "-" + month + "-" + day + " " +hours+ ":" + minutes;
 });
 });
 });
+
+app.use(connectLiveReload());
 
 app.get('/', function(req,res) {
  collection.find({}).toArray(function(err, data){
