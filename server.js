@@ -62,9 +62,9 @@ var dateTime = year + "-" + month + "-" + day + " " +hours+ ":" + minutes;
             message: message.toString(),
 			date: dateTime
         };
-   collection.insert(messageObject, function(error, result) {
+   collection.insertOne(messageObject, function(error, result) {
   collection.find({}).toArray(function(err, data){
-      //console.log(data); // it will print your collection data
+     console.log(data); // it will print your collection data
   resultt=data;
 
 
