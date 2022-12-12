@@ -1,18 +1,17 @@
-/**
- *
- * This NodeJS application listens to MQTT messages and records them to MongoDB
- *
- * @author  Dennis de Greef <github@link0.net>
- * @license MIT
- *
- */
-/* var express = require("express");
-var app = express();
+
+ const express = require('express')
+
+var app = express(); 
+const host = '0.0.0.0';
+const port = process.env.PORT || 4000;
+/*var express = require("express");*/
+
 var mongodb  = require('mongodb');
 var mqtt     = require('mqtt');
 var config   = require('./config');
 var resultt;
-
+var h=1;
+var cnt=0;
 //ar mqttUri  = 'mqtt://' + config.mqtt.hostname + ':' + config.mqtt.port;
 var mqttUri  = 'mqtt://' + config.mqtt.user + ':' + config.mqtt.password + '@' + config.mqtt.hostname + ':' + config.mqtt.port;
 
@@ -20,173 +19,66 @@ var client   = mqtt.connect(mqttUri);
 
 client.on('connect', function () {
     client.subscribe(config.mqtt.namespace);
-	 console.log("subscibeee");
+	 //console.log("subscibeee");
 });
 
-const { MongoClient } = require('mongodb');
-const uri = "mongodb+srv://chiraz:<password>@cluster0.osmydat.mongodb.net/?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-client.connect(err => {
-  const collection = client.db(config.mongodb.database).collection(config.mongodb.collection);
-  // perform actions on the collection object
-  
-
-//var mongoUri = 'mongodb://' + config.mongodb.hostname + ':' + config.mongodb.port + '/' + config.mongodb.database;
-//mongodb.MongoClient.connect(mongoUri, function(error, database) {
-  //  if(error != null) {
-    //    throw error;
-    //}
-
-   // var collection = database.collection();
-    collection.createIndex( { "topic" : 1 } );
-
-    client.on('message', function (topic, message, date) {
-		   
-var date_ob = new Date();
-var day = ("0" + date_ob.getDate()).slice(-2);
-var month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
-var year = date_ob.getFullYear();
-
-var date = year + "-" + month + "-" + day;
-console.log(date);
-    
-var hours = date_ob.getHours();
-var minutes = date_ob.getMinutes();
-var seconds = date_ob.getSeconds();
-  
-var dateTime = year + "-" + month + "-" + day + " " + hours + ":" + minutes + ":" + seconds;
-console.log(dateTime);
-        var messageObject = {
-            topic: topic,
-            message: message.toString(),
-			date: dateTime
-        };
-//console.log("message"+message.toString());
-var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://localhost:27017/";
-        collection.insert(messageObject, function(error, result) {
-			MongoClient.connect(url, function(err, db) {
-  if (err) throw err;
-  var dbo = db.db("mqtt");
-  dbo.collection("message").find({}).toArray(function(err, result) {
-    if (err) throw err;
-    console.log(result);
-	resultt=result;
-    db.close();
-  });
- 
-            if(error != null) {
-                console.log("ERROR: " + error);
-            }
-        });
-    });
-
-client.close();
-});
-});
-app.get('/data', function(req,res) {
-res.send(resultt);
-
-});
-app.listen(4000, () => {
-    console.log("Server Started at ${3000}")
-});
-});*/
-/**
- *
- * This NodeJS application listens to MQTT messages and records them to MongoDB
- *
- * @author  Dennis de Greef <github@link0.net>
- * @license MIT
- *
- */
- var express = require("express");
-var app = express();
-var mongodb  = require('mongodb');
-var mqtt     = require('mqtt');
-var config   = require('./config');
-var resultt;
-
-//ar mqttUri  = 'mqtt://' + config.mqtt.hostname + ':' + config.mqtt.port;
-var mqttUri  = 'mqtt://' + config.mqtt.user + ':' + config.mqtt.password + '@' + config.mqtt.hostname + ':' + config.mqtt.port;
-
-var client   = mqtt.connect(mqttUri);
-
-client.on('connect', function () {
-    client.subscribe(config.mqtt.namespace);
-	 console.log("subscibeee");
-});
-
-var mongoUri = 'mongodb://' + config.mongodb.hostname + ':' + config.mongodb.port + '/' + config.mongodb.database;
-mongodb.MongoClient.connect(mongoUri, function(error, database) {
-    if(error != null) {
-        throw error;
-    }
-
-    var collection = database.collection(config.mongodb.collection);
-    collection.createIndex( { "topic" : 1 } );
-
-    client.on('message', function (topic, message, date) {
-		   
-var date_ob = new Date();
-var day = ("0" + date_ob.getDate()).slice(-2);
-var month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
-var year = date_ob.getFullYear();
-
-var date = year + "-" + month + "-" + day;
-console.log(date);
-    
-var hours = date_ob.getHours();
-var minutes = date_ob.getMinutes();
-var seconds = date_ob.getSeconds();
-  
-var dateTime = year + "-" + month + "-" + day + " " + hours + ":" + minutes + ":" + seconds;
-console.log(dateTime);
-        var messageObject = {
-            topic: topic,
-            message: message.toString(),
-			date: dateTime
-        };
-//console.log("message"+message.toString());
-/*var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://localhost:27017/";
-        collection.insert(messageObject, function(error, result) {
-			MongoClient.connect(url, function(err, db) {
-  if (err) throw err;
-  var dbo = db.db("mqtt");
-  dbo.collection("message").find({}).toArray(function(err, result) {
-    if (err) throw err;
-    console.log(result);
-	resultt=result;
-    db.close();
-  });
- 
-            if(error != null) {
-                console.log("ERROR: " + error);
-            }
-        });
-    });
-
-});
-app.get('/data', function(req,res) {
-res.send(resultt);
-
-});
-app.listen(4000, () => {
-    console.log("Server Started at ${3000}")
-});*/
+const URI = process.env.MONGODB_URL;
 const mongoose = require('mongoose');
+mongoose.connect("mongodb+srv://chiraz:09813432Ch.@cluster0.osmydat.mongodb.net/?retryWrites=true&w=majority",
+{ useNewUrlParser: true}, function(err, db) {
+        if(err) {
+            console.log(err);
+        }
+
+//console.log('Connected to MongoDB!!!')
+});
+const connection = mongoose.connection;
+
+connection.on('error', console.error.bind(console, 'connection error:'));
+connection.once('open', async function () {
+
+  const collection  = connection.db.collection("message");
+   client.on('message', function (topic, message, date) {
+		   
+var date_ob = new Date();
+ date_ob.toLocaleString('en-US', {
+    hour12: false,
+  });
+var day = ("0" + date_ob.getDate()).slice(-2);
+var month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+var year = date_ob.getFullYear();
+
+var date = year + "-" + month + "-" + day;
+//console.log(date);
+    
+var hours = date_ob.getHours();
+var minutes = date_ob.getMinutes();
+var seconds = date_ob.getSeconds();
+
+var dateTime = year + "-" + month + "-" + day + " " +hours+ ":" + minutes;
+//console.log(dateTime);
+        var messageObject = {
+            //topic: topic,
+            message: message.toString(),
+			date: dateTime
+        };
+   collection.insert(messageObject, function(error, result) {
+  collection.find({}).toArray(function(err, data){
+      //console.log(data); // it will print your collection data
+  resultt=data;
 
 
+});
+});
+});
+});
+app.get('/', function(req,res) {
 
-//establish connection to database
-mongoose.connect(
-    'mongodb+srv://chiraz:09813432Ch.@cluster0.osmydat.mongodb.net/mqtt',
-    { useFindAndModify: false, useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true},
-    (err) => {
-        if (err) return console.log("Error: ", err);
-        console.log("MongoDB Connection -- Ready state is:", mongoose.connection.readyState);
-    }
-);
+res.send(resultt);
+
 });
 
+
+app.listen(port, host, function() {
+  console.log("Server started.......");
+});
