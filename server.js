@@ -70,15 +70,16 @@ var dateTime = year + "-" + month + "-" + day + " " +hours+ ":" + minutes;
 
 });
 });
-});
-});
-app.get('/', function(req,res) {
-  collection.find({}).toArray(function(err, data){
+collection.find({}).toArray(function(err, data){
       //console.log(data); // it will print your collection data
   resultt=data;
 
 
 });
+});
+});
+app.get('/', function(req,res) {
+  
 res.send(resultt);
 
 });
