@@ -76,7 +76,21 @@ var dateTime = year + "-" + month + "-" + day + " " +hours+ ":" + minutes;
 });
 });
 app.get('/', function(req,res) {
- collection.find({}).toArray(function(err, data){
+mongoose.connect("mongodb+srv://chiraz:09813432Ch.@cluster0.osmydat.mongodb.net/?retryWrites=true&w=majority",
+{ useNewUrlParser: true}, function(err, db) {
+        if(err) {
+            console.log(err);
+        }
+
+//console.log('Connected to MongoDB!!!')
+});
+const connection = mongoose.connection;
+
+connection.on('error', console.error.bind(console, 'connection error:'));
+connection.once('open', async function () {
+
+  const collection  = connection.db.collection("message");
+	collection.find({}).toArray(function(err, data){
       //console.log(data); // it will print your collection data
  if(topic=="Helios/Energie") resultt=data;
  if(topic=="Helios1/Energie") resultt1=data;
