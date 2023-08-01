@@ -9,7 +9,7 @@ const port = process.env.PORT || 4000;
 var mongodb  = require('mongodb');
 var mqtt     = require('mqtt');
 var config   = require('./config');
-var resultt;
+var resultt="",resultt1="";
 var h=1;
 var cnt=0;
 //ar mqttUri  = 'mqtt://' + config.mqtt.hostname + ':' + config.mqtt.port;
@@ -19,6 +19,8 @@ var client   = mqtt.connect(mqttUri);
 
 client.on('connect', function () {
     client.subscribe(config.mqtt.namespace);
+	client.subscribe(config.mqtt.namespace1);
+
 	 //console.log("subscibeee");
 });
 
@@ -65,7 +67,8 @@ var dateTime = year + "-" + month + "-" + day + " " +hours+ ":" + minutes;
    collection.insert(messageObject, function(error, result) {
   collection.find({}).toArray(function(err, data){
       //console.log(data); // it will print your collection data
-  resultt=data;
+ if(topic=="Helios/Energie") resultt=data;
+ if(topic=="Helios1/Energie") resultt1=data;
 
 
 });
@@ -77,7 +80,11 @@ app.get('/', function(req,res) {
 res.send(resultt);
 
 });
+app.get('/2', function(req,res) {
 
+res.send(resultt1);
+
+});
 
 app.listen(port, host, function() {
   console.log("Server started.......");

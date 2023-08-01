@@ -4,6 +4,8 @@ config.debug = process.env.DEBUG || false;
 
 config.mqtt  = {};
 config.mqtt.namespace = process.env.MQTT_NAMESPACE || 'Helios/Energie'; 
+config.mqtt.namespace1 =  'Helios1/Energie'; 
+
 //+/devices/+/up
 config.mqtt.hostname  = process.env.MQTT_HOSTNAME  || 'mqtt.livepool.eu'
 config.mqtt.port      = process.env.MQTT_PORT      || 8883;
