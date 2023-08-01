@@ -76,12 +76,24 @@ var dateTime = year + "-" + month + "-" + day + " " +hours+ ":" + minutes;
 });
 });
 app.get('/', function(req,res) {
+ collection.find({}).toArray(function(err, data){
+      //console.log(data); // it will print your collection data
+ if(topic=="Helios/Energie") resultt=data;
+ if(topic=="Helios1/Energie") resultt1=data;
 
+
+});
 res.send(resultt);
 
 });
 app.get('/2', function(req,res) {
+ collection.find({}).toArray(function(err, data){
+      //console.log(data); // it will print your collection data
+ if(topic=="Helios/Energie") resultt=data;
+ if(topic=="Helios1/Energie") resultt1=data;
 
+
+});
 res.send(resultt1);
 
 });
